@@ -1,0 +1,4 @@
+#Tue Nov 20 23:32:53 EET 2018
+base.0=/Users/lytrax/Projects/RN057ImageTest/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

@@ -1,0 +1,39 @@
+{
+  "name": "RN057ImageTest",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start:reset": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
+    "test": "jest",
+    "rename": "node ./bin/rename.js",
+    "android": "react-native run-android",
+    "android-with-patches": "./scripts/applyPatches.sh && react-native run-android",
+    "android-clean": "cd android && rm -rf ./build && ./gradlew clean && cd ..",
+    "android-clean-release": "yarn run android-clean && yarn run android --variant=release",
+    "android-clean-debug": "yarn run android-clean && yarn run android",
+    "android-gradle": "./scripts/applyPatches.sh && cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug && cd ..",
+    "android-install-debug": "cd ./android && ./gradlew installDebug && cd ..",
+    "android-release": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.bundle --assets-dest android/app/src/main/res/ && react-native run-android --variant=release",
+    "ios": "react-native run-ios",
+    "adb-restart-server": "adb kill-server && adb start-server",
+    "lgg6-debug": "cd ./android && ./gradlew app:assembleDebug && adb -s LGH870c3a2b092 install ./app/build/outputs/apk/debug/app-debug.apk && adb -s LGH870c3a2b092 reverse tcp:8081 tcp:8081 && cd ..",
+    "lgg6-install-debug": "adb -s LGH870c3a2b092 install ./android/app/build/outputs/apk/debug/app-debug.apk && adb -s LGH870c3a2b092 reverse tcp:8081 tcp:8081"
+  },
+  "dependencies": {
+    "react": "16.6.1",
+    "react-native": "0.57.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
+    "babel-jest": "23.6.0",
+    "jest": "23.6.0",
+    "metro-react-native-babel-preset": "0.49.2",
+    "react-test-renderer": "16.6.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
